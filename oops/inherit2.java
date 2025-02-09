@@ -52,7 +52,7 @@ class Employee extends Person {
 }
 
 
-public class inherit2 {
+public class Inherit2 {
     public static void main(String[] args) {
         Employee employee = new Employee("John Doe", 100000, 2020, "1234567890");
         System.out.println("Name: " + employee.getName());

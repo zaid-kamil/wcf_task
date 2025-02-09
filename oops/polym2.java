@@ -64,7 +64,7 @@ class Square extends Shape {
     }
 }
 
-public class polym2 {
+public class Polym2 {
     public static void main(String[] args) {
         Shape c = new Circle();
         c.draw();

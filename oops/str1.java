@@ -4,7 +4,7 @@ package oops;
  * Write a Program to check whether a given String is Palindrome or not.
  */
 
-public class str1 {
+public class Str1 {
     public static void main(String[] args) {
         if(args.length != 1){
             System.out.println("one text argument is required");

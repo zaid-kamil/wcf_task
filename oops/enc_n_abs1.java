@@ -72,7 +72,7 @@ class Book {
     }
 }
 
-public class enc_n_abs1 {
+public class Enc_n_abs1 {
     public static void main(String[] args) {
         Author author = new Author("J.K. Rowling", "jkrowling@example.com", 'F');
         Book book = new Book("Harry Potter", author, 29.99, 1000);

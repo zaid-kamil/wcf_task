@@ -47,7 +47,7 @@ class Orange extends Fruit {
 }
 
 
-public class polym1 {
+public class Polym1 {
     public static void main(String[] args) {
         Apple apple = new Apple("Apple", "Sweet", "Medium");
         apple.eat();

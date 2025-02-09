@@ -37,7 +37,7 @@ class Bird extends Animal {
     }
 }
 
-public class inherit1 {
+public class Inherit1 {
     public static void main(String[] args) {
         Animal animal = new Animal();
         animal.eat();
