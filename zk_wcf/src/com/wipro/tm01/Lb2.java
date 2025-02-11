@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /*
  * Write a Program to accept a String as a command line 

@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 class Welcome{
     public static void main(String[] args){
         System.out.println("Hello World");

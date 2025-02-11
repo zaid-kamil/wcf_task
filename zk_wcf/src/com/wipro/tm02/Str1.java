@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Write a Program to check whether a given String is Palindrome or not.

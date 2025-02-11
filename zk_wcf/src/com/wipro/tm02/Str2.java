@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Write a java program that will concatenate 2 strings and return the result. The result should be in lowercase.

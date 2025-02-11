@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Create a class named ‘Animal’ which includes methods like eat() and sleep().

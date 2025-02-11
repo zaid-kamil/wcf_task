@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Given a string, return a new string made of 'n' copies of 

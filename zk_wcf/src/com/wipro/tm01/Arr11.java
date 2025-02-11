@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /*
  * Given an array of type int, print true if every element is 1 or 4. 

@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;

@@ -1,4 +1,4 @@
-package com.abeh.exchan;
+package com.wipro.tm03.exception;
 
 public class UserRegistration {
     

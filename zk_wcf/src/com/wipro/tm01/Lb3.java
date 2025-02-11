@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /* Write a Program to accept two integers as command 
  * line arguments and print the sum of the two numbers

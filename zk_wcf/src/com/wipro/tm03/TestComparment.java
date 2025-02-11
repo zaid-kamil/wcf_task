@@ -1,4 +1,4 @@
-package com.abeh.abs;
+package com.wipro.tm03;
 import java.util.Random;
 
 class TestCompartment {

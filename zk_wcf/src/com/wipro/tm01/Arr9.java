@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /*
  * Print a version of the given array where all the 10's have been removed. 

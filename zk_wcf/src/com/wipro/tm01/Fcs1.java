@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /*
  * A) Write a program to check if a given integer number 

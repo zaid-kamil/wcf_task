@@ -1,4 +1,4 @@
-package com.java.fundamentals;
+package com.wipro.tm01;
 
 /*
  * Write a program to find the biggest number in a 3*3 array. 

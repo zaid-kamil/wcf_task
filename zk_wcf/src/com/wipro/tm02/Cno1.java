@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Create a class Box that uses a parameterized constructor to initialize the 

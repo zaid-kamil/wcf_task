@@ -1,4 +1,4 @@
-package com.oops;
+package com.wipro.tm02;
 
 /*
  * Create  a base class Fruit with name ,taste and size as its attributes. 
