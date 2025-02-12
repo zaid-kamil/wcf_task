@@ -16,16 +16,16 @@ public class StudentReport {
         for (int mark : marks) {
             sum += mark;
         }
-        
-        if (sum < 150) return "C";
+        if (sum < 125) return "D";
+        else if (sum < 150) return "C";
         else if (sum < 200) return "B";
         else if (sum < 250) return "A";
         else return "A+";
     }
     
-    public String validate(Student s) throws NullNameException, NullMarksArrayException, NullStudentObjectException {
+    public String validate(Student s) throws NullNameException, NullMarksArrayException, NullStudentException {
         if (s == null) {
-            throw new NullStudentObjectException();
+            throw new NullStudentException();
         }
         if (s.getName() == null) {
             throw new NullNameException();

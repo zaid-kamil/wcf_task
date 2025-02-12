@@ -29,7 +29,7 @@ public class StudentMain {
 					student.setGrade(grade);
 					System.out.println("Student: " + student.getName() + " | Grade: " + grade);
 				}
-			} catch (NullStudentObjectException e) {
+			} catch (NullStudentException e) {
 				System.out.println(e);
 			} catch (NullNameException e) {
 				System.out.println(e);
