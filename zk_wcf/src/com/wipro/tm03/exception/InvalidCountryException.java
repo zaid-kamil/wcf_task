@@ -1,5 +1,6 @@
 package com.wipro.tm03.exception;
 
+@SuppressWarnings("serial")
 public class InvalidCountryException extends Exception {
     // Default constructor
     public InvalidCountryException() {
