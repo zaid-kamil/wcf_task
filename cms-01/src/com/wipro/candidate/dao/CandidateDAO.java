@@ -19,9 +19,11 @@ public class CandidateDAO {
 			System.err.println("Student bean is null, Cannot add student!");
 			return status;
 		}
-		try (Connection con = DBUtil.getDBConn()) {
-			String insertQuery = "INSERT INTO CANDIDATE_TBL (ID, Name, M1, M2, M3, Result, Grade) VALUES (?,?,?,?,?,?,?)";
-			PreparedStatement pst = con.prepareStatement(insertQuery);
+		con = DBUtil.getDBConn();
+		String insertQuery = "INSERT INTO CANDIDATE_TBL (ID, Name, M1, M2, M3, Result, Grade) VALUES (?,?,?,?,?,?,?)";
+		PreparedStatement pst;
+		try {
+			pst = con.prepareStatement(insertQuery);
 			pst.setString(1, studentBean.getId());
 			pst.setString(2, studentBean.getName());
 			pst.setInt(3, studentBean.getM1());
@@ -43,13 +45,14 @@ public class CandidateDAO {
 
 	public ArrayList<CandidateBean> getByResult(String criteria) {
 		ArrayList<CandidateBean> list = new ArrayList<CandidateBean>();
-		try (Connection con = DBUtil.getDBConn()) {
-			String query = switch (criteria) {
-			case "ALL":
-				yield "SELECT * FROM CANDIDATE_TBL";
-			default:
-				yield "SELECT * FROM CANDIDATE_TBL WHERE result LIKE " + criteria;
-			};
+		con = DBUtil.getDBConn();
+		String query = switch (criteria) {
+		case "ALL":
+			yield "SELECT * FROM CANDIDATE_TBL";
+		default:
+			yield "SELECT * FROM CANDIDATE_TBL WHERE result LIKE " + criteria;
+		};
+		try {
 			PreparedStatement pst = con.prepareStatement(query);
 			try (ResultSet rs = pst.executeQuery()) {
 
@@ -74,13 +77,12 @@ public class CandidateDAO {
 
 	public String generateCandidateId(String name) throws SQLException {
 		String id = "";
-		try (Connection con = DBUtil.getDBConn()) {
-			String query = "SELECT CANDID_SEQ.NEXTVAL FROM dual";
-			PreparedStatement pst = con.prepareStatement(query);
-			try (ResultSet rs = pst.executeQuery()) {
-				if (rs.next()) {
-					id = name.substring(0, 2) + rs.getInt(1);
-				}
+		con = DBUtil.getDBConn();
+		String query = "SELECT CANDID_SEQ.NEXTVAL FROM dual";
+		PreparedStatement pst = con.prepareStatement(query);
+		try (ResultSet rs = pst.executeQuery()) {
+			if (rs.next()) {
+				id = name.substring(0, 2) + rs.getInt(1);
 			}
 		}
 		return id;
