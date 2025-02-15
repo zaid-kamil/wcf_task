@@ -55,7 +55,6 @@ public class CandidateDAO {
 		try {
 			PreparedStatement pst = con.prepareStatement(query);
 			try (ResultSet rs = pst.executeQuery()) {
-
 				while (rs.next()) {
 					CandidateBean cb = new CandidateBean();
 					cb.setId(rs.getString(1));

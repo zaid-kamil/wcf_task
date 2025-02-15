@@ -25,6 +25,7 @@ static class Employee {
     int age;
 }
 
+@SuppressWarnings("serial")
 static class InvalidEmployeeException extends RuntimeException {
     public InvalidEmployeeException() {
         super("Invalid Employee");
