@@ -85,7 +85,7 @@ public class CandidateDAO {
 				}
 			}
 		} catch (SQLException e) {
-			return "FA" + new Random().nextInt(5000, 23000);
+			return "FA" + new Random().nextInt(5000);
 		}
 		return id;
 	}

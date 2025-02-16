@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -54,7 +55,7 @@ public class CandidateMainTest {
 
 	@Test
 	public void testCheckDisplayCriteria() {
-        List<String> criteria = List.of("ALL", "PASS", "FAIL");
+        List<String> criteria = Arrays.asList("ALL", "PASS", "FAIL");
         assertTrue(criteria.contains("ALL"));
         assertTrue(criteria.contains("PASS"));
         assertTrue(criteria.contains("FAIL"));
