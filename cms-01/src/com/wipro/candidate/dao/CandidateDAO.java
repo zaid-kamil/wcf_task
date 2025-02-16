@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CandidateDAO {
 
@@ -50,10 +51,13 @@ public class CandidateDAO {
 		case "ALL":
 			yield "SELECT * FROM CANDIDATE_TBL";
 		default:
-			yield "SELECT * FROM CANDIDATE_TBL WHERE result LIKE " + criteria;
+			yield "SELECT * FROM CANDIDATE_TBL WHERE result LIKE ?";
 		};
+		System.out.println(query);
 		try {
 			PreparedStatement pst = con.prepareStatement(query);
+			if (!criteria.equalsIgnoreCase("ALL"))
+				pst.setString(1, criteria);
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
 					CandidateBean cb = new CandidateBean();
@@ -74,15 +78,19 @@ public class CandidateDAO {
 		return list;
 	}
 
-	public String generateCandidateId(String name) throws SQLException {
+	public String generateCandidateId(String name) {
 		String id = "";
-		con = DBUtil.getDBConn();
-		String query = "SELECT CANDID_SEQ.NEXTVAL FROM dual";
-		PreparedStatement pst = con.prepareStatement(query);
-		try (ResultSet rs = pst.executeQuery()) {
-			if (rs.next()) {
-				id = name.substring(0, 2) + rs.getInt(1);
+		try {
+			con = DBUtil.getDBConn();
+			String query = "SELECT CANDID_SEQ.NEXTVAL FROM dual";
+			PreparedStatement pst = con.prepareStatement(query);
+			try (ResultSet rs = pst.executeQuery()) {
+				if (rs.next()) {
+					id = name.substring(0, 2) + rs.getInt(1);
+				}
 			}
+		} catch (SQLException e) {
+			return "FA" + new Random().nextInt(5000, 23000);
 		}
 		return id;
 	}

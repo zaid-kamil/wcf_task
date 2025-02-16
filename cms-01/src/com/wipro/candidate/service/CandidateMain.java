@@ -1,13 +1,12 @@
 package com.wipro.candidate.service;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import com.wipro.candidate.bean.CandidateBean;
 import com.wipro.candidate.dao.CandidateDAO;
 import com.wipro.candidate.util.WrongDataException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class CandidateMain {
 
@@ -34,19 +33,20 @@ public class CandidateMain {
 
 			// result and grade generation
 			int total = studBean.getM1() + studBean.getM2() + studBean.getM3();
+			System.out.println(total);
 			if (total >= 240) {
 				studBean.setResult("PASS");
 				studBean.setGrade("Distinction");
-			} else if (total < 240 || total >= 180) {
+			} else if (total < 240 && total >= 180) {
 				studBean.setResult("PASS");
 				studBean.setGrade("First Class");
-			} else if (total < 180 || total >= 150) {
+			} else if (total < 180 && total >= 150) {
 				studBean.setResult("PASS");
 				studBean.setGrade("Second Class");
-			} else if (total < 150 || total >= 105) {
+			} else if (total < 150 && total >= 105) {
 				studBean.setResult("PASS");
 				studBean.setGrade("Third Class");
-			} else if (total < 105) {
+			} else {
 				studBean.setResult("FAIL");
 				studBean.setGrade("No Grade");
 			}
@@ -58,11 +58,10 @@ public class CandidateMain {
 			} else {
 				result = actionState;
 			}
-		} catch (WrongDataException | SQLException e) {
-			return e.toString();
+		} catch (WrongDataException e) {
+			return "Data incorrect" + e.getMessage();
 		}
 		return result;
-
 	}
 
 	public ArrayList<CandidateBean> displayAll(String criteria) {
@@ -81,10 +80,40 @@ public class CandidateMain {
 
 	public static void main(String[] args) {
 		CandidateMain cm = new CandidateMain();
-		CandidateBean bean = cm.getCandidate();
-		String result = cm.addCandidate(bean);
-		System.out.println(result);
-		cm.displayAll("ALL").stream().map(e -> e.getName()).forEach(System.out::println);
+		try (Scanner sc = new Scanner(System.in)) {
+			while (true) {
+				System.out.println("Menu:");
+				System.out.println("1. Add Candidate");
+				System.out.println("2. Display All Candidates");
+				System.out.println("3. Exit");
+				System.out.print("Enter your choice: ");
+				int choice = Integer.parseInt(sc.nextLine());
+
+				switch (choice) {
+				case 1 -> {
+					CandidateBean bean = cm.getCandidate();
+					String result = cm.addCandidate(bean);
+					System.out.println(result);
+				}
+				case 2 -> {
+					System.out.print("Enter criteria (PASS, FAIL): ");
+					String criteria = sc.nextLine();
+					if (criteria.isEmpty()) {
+						criteria = "ALL";
+					}
+					cm.displayAll(criteria).stream().map(e -> e.getId() + ":" + e.getName())
+							.forEach(System.out::println);
+				}
+				case 3 -> {
+					sc.close();
+					System.exit(0);
+				}
+				default -> System.out.println("Invalid choice. Please try again.");
+				}
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -92,7 +121,6 @@ public class CandidateMain {
 		CandidateBean c = new CandidateBean();
 		try {
 			Scanner sc = new Scanner(System.in);
-
 			System.out.println("Enter candidate details");
 			System.out.println("enter name:");
 			c.setName(sc.nextLine());
