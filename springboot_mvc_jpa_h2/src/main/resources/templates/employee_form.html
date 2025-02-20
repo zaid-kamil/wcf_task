@@ -11,16 +11,16 @@
             <form th:action="${employee.id} != null ? @{/employees/{id}(id=${employee.id})} : @{/employees/save}" 
                   th:object="${employee}" method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter Name" required>
+                    <label for="firstname" class="form-label">Name</label>
+                    <input type="text" th:field="*{firstName}" class="form-control" id="firstname" placeholder="Enter First Name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="position" class="form-label">Position</label>
-                    <input type="text" th:field="*{position}" class="form-control" id="position" placeholder="Enter Position" required>
+                    <label for="lastname" class="form-label">Position</label>
+                    <input type="text" th:field="*{lastName}" class="form-control" id="lastname" placeholder="Enter Last Name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="salary" class="form-label">Salary</label>
-                    <input type="number" th:field="*{salary}" class="form-control" id="salary" placeholder="Enter Salary" required>
+                    <label for="email" class="form-label">Salary</label>
+                    <input type="number" th:field="*{email}" class="form-control" id="email" placeholder="Enter Email" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a th:href="@{/employees}" class="btn btn-secondary">Cancel</a>
