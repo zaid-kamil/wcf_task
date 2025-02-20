@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="springboot_mvc_jpa_h2/src/test/java/|springboot_mvc_jpa_h2/src/main/java/|JUnitLearning/src/|iostream-practice-app/src/|springboot_dependency_injection_n_autowired/src/main/java/|cms-02/src/|cms-02/test/|springboot_introduction/src/test/java/|stream-api-demo-app/src/|zk_wcf/src/|JUnitLearning/test/|collections-app/src/|springboot_introduction/src/main/java/|iostream-employee-management-app/src/|springboot_dependency_injection_n_autowired/src/test/java/|zk_wcf/test/" kind="src" path=""/>
+	<classpathentry kind="src" path="cms-02/src"/>
+	<classpathentry kind="src" path="cms-02/test"/>
+	<classpathentry kind="src" path="collections-app/src"/>
+	<classpathentry kind="src" path="iostream-employee-management-app/src"/>
+	<classpathentry kind="src" path="iostream-practice-app/src"/>
+	<classpathentry kind="src" path="JUnitLearning/src"/>
+	<classpathentry kind="src" path="JUnitLearning/test"/>
+	<classpathentry kind="src" path="springboot_dependency_injection_n_autowired/src/main/java"/>
+	<classpathentry kind="src" path="springboot_dependency_injection_n_autowired/src/test/java"/>
+	<classpathentry kind="src" path="springboot_introduction/src/main/java"/>
+	<classpathentry kind="src" path="springboot_introduction/src/test/java"/>
+	<classpathentry kind="src" path="springboot_mvc_jpa_h2/src/main/java"/>
+	<classpathentry kind="src" path="springboot_mvc_jpa_h2/src/test/java"/>
+	<classpathentry kind="src" path="stream-api-demo-app/src"/>
+	<classpathentry kind="src" path="zk_wcf/src"/>
+	<classpathentry kind="src" path="zk_wcf/test"/>
+	<classpathentry kind="output" path="JUnitLearning/bin"/>
+</classpath>
