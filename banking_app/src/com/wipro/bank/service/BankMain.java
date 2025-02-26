@@ -1,8 +1,5 @@
 package com.wipro.bank.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -13,19 +10,7 @@ import com.wipro.bank.util.InsufficientFundsException;
 public class BankMain {
 	public static void main(String[] args) {
 		BankMain bankMain = new BankMain();
-
-		// view balance
-		System.out.println(bankMain.checkBalance("1234567894"));
-
-		// transfer money
-		TransferBean transferBean = new TransferBean();
-
-		transferBean.setFromAccountNumber("1234567894");
-		transferBean.setToAccountNumber("1234567891");
-		transferBean.setAmount(1000);
-		transferBean.setDateOfTransaction(new Date());
-		System.out.println(bankMain.transfer(transferBean));
-
+		
 		// 1. Test for Balance checking with valid account number
 		String checkBalanceValid = bankMain.checkBalance("1234567894");
 		System.out.println("Test 1 - Valid Account Balance Check: " + checkBalanceValid);
@@ -34,11 +19,15 @@ public class BankMain {
 		String checkBalanceInvalid = bankMain.checkBalance("0000000000");
 		System.out.println("Test 2 - Invalid Account Balance Check: " + checkBalanceInvalid);
 
+		// 2.3 Balance checking with valid account number
+		String checkBalanceValid2 = bankMain.checkBalance("1234567890");
+		System.out.println("Test 2 - Valid Account Balance Check: " + checkBalanceValid2);
+
 		// 3. Test for successful transfer of funds
 		TransferBean transferBeanSuccess = new TransferBean();
-		transferBeanSuccess.setFromAccountNumber("1234567894");
-		transferBeanSuccess.setToAccountNumber("1234567891");
-		transferBeanSuccess.setAmount(1000);
+		transferBeanSuccess.setFromAccountNumber("1234567890");
+		transferBeanSuccess.setToAccountNumber("1234567894");
+		transferBeanSuccess.setAmount(10);
 		transferBeanSuccess.setDateOfTransaction(new Date());
 		String transferSuccess = bankMain.transfer(transferBeanSuccess);
 		System.out.println("Test 3 - Successful Transfer: " + transferSuccess);
@@ -54,9 +43,9 @@ public class BankMain {
 
 		// 5. Test for transfer with zero balance
 		TransferBean transferBeanZeroBalance = new TransferBean();
-		transferBeanZeroBalance.setFromAccountNumber("1234567894");
+		transferBeanZeroBalance.setFromAccountNumber("1234567892");
 		transferBeanZeroBalance.setToAccountNumber("1234567891");
-		transferBeanZeroBalance.setAmount(0);
+		transferBeanZeroBalance.setAmount(2320);
 		transferBeanZeroBalance.setDateOfTransaction(new Date());
 		String transferZeroBalance = bankMain.transfer(transferBeanZeroBalance);
 		System.out.println("Test 5 - Transfer with Zero Balance: " + transferZeroBalance);
@@ -86,11 +75,13 @@ public class BankMain {
 		String msg = "ACCOUNT NUMBER INVALID";
 		try {
 			if (dao.validateAccount(accountNumber)) {
+				System.out.println("checking balance for ac = " + accountNumber);
 				float balance = dao.findBalance(accountNumber);
-				msg = String.format("BALANCE IS:%.2f", balance);
+				msg = String.format("BALANCE IS:%.1f", balance);
+				System.out.println("balance is = " + balance);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQL FAILURE: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -116,21 +107,24 @@ public class BankMain {
 			// process transfer
 			transferBean.setTransactionID(dao.generateSequenceNumber());
 			if (!dao.updateBalance(transferBean.getFromAccountNumber(), balance - transferBean.getAmount())) {
+				System.out.println("FROM ACCOUNT BALANCE FAILURE");
 				return "FAILURE";
 			}
 
 			float toAccountBalance = dao.findBalance(transferBean.getToAccountNumber());
 			if (!dao.updateBalance(transferBean.getToAccountNumber(), toAccountBalance + transferBean.getAmount())) {
+				System.out.println("TO ACCOUNT BALANCE FAILURE");
 				return "FAILURE";
 			}
 
 			if (dao.transferMoney(transferBean)) {
 				return "SUCCESS";
 			} else {
+				System.out.println("TRANSFER FAILURE");
 				return "FAILURE";
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println("SQL FAILURE: " + e.getMessage());
 			return "FAILURE";
 		} catch (InsufficientFundsException e) {
 			return e.toString();
