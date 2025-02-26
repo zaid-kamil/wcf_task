@@ -40,7 +40,7 @@ public class EmployeeController {
 
     // Save a new employee
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+    public String saveEmployee(@ModelAttribute Employee employee) {
         if (employee.getId() != null) {
             employeeService.updateEmployee(employee.getId(), employee);
         } else {
@@ -62,7 +62,7 @@ public class EmployeeController {
 
     // Update an existing employee using form submission
     @PostMapping("/{id}")
-    public String updateEmployee(@PathVariable Long id, @ModelAttribute("employee") Employee employee) {
+    public String updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee) {
         employeeService.updateEmployee(id, employee);
         return "redirect:/employees";
     }
