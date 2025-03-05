@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Border Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .border-box {
+            width: 300px;
+            padding: 30px;
+            margin: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background-color: #fff;
+            border-width: 30px;
+            border-style: solid;
+            border-color: transparent;
+        }
+
+        .repeating {
+            border-image-source: url('https://www.transparenttextures.com/patterns/brick-wall.png');
+            border-image-slice: 30;
+            border-image-width: 30px;
+            border-image-repeat: repeat;
+        }
+
+        .stretching {
+            border-image-source: url('https://www.transparenttextures.com/patterns/brick-wall.png');
+            border-image-slice: 30;
+            border-image-width: 30px;
+            border-image-repeat: stretch;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Border Image Examples</h1>
+    
+    <div class="container">
+        <div>
+            <h2>a. Image repeats to fit the contents</h2>
+            <div class="border-box repeating">
+                Welcome to CSS World
+            </div>
+        </div>
+        
+        <div>
+            <h2>b. Image stretches to fit the contents</h2>
+            <div class="border-box stretching">
+                Welcome to CSS World
+            </div>
+        </div>
+    </div>
+    
+    <!-- Note: Replace the placeholder image URL with your own border image -->
+</body>
+</html>

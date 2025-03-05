@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-container {
+            margin: 20px 0;
+        }
+        input {
+            padding: 8px;
+            width: 70%;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-left: 5px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome Checker</h1>
+    
+    <div class="input-container">
+        <input type="text" id="inputString" placeholder="Enter a string">
+        <button onclick="checkPalindrome()">Check</button>
+    </div>
+    
+    <div id="result"></div>
+    
+    <script>
+        // Function to check if a string is palindrome
+        function isPalindrome(str) {
+            // Remove non-alphanumeric characters and convert to lowercase
+            const cleanStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+            
+            // Compare the string with its reverse
+            const reversedStr = cleanStr.split('').reverse().join('');
+            
+            // Return true if the string is the same forwards and backwards
+            return cleanStr === reversedStr;
+        }
+        
+        // Function to handle the button click
+        function checkPalindrome() {
+            const inputString = document.getElementById('inputString').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (inputString.trim() === '') {
+                resultDiv.innerHTML = 'Please enter a string';
+                return;
+            }
+            
+            if (isPalindrome(inputString)) {
+                resultDiv.innerHTML = `"${inputString}" is a palindrome.`;
+            } else {
+                resultDiv.innerHTML = `"${inputString}" is NOT a palindrome.`;
+            }
+        }
+    </script>
+</body>
+</html>
